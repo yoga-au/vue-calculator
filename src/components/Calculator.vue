@@ -1,6 +1,6 @@
 <template>
 	<div>{{ output }}</div>
-	<input type="text" v-model="calculatorScreen">
+	<input type="text" v-model="screen">
 	<div class="numpad-container">
 		<div class="numpad" @click="clear">AC</div>
 		<div class="numpad" @click="numOne">1</div>
@@ -18,7 +18,7 @@ import { Parser } from 'expr-eval'
 export default {
 	data() {
 		return {
-			calculatorScreen: '',
+			screen: '',
 			result: '',
 			output: ''
 		}
@@ -30,34 +30,35 @@ export default {
 
 	methods: {
 		clear() {
-			this.calculatorScreen = ''
+			this.screen = ''
 			this.result = ''
+			this.output = ''
 		},
 		numOne() {
-			this.calculatorScreen = this.calculatorScreen.concat('1')
+			this.screen = this.screen.concat('1')
 		},
 		numTwo() {
-			this.calculatorScreen = this.calculatorScreen.concat('2')
+			this.screen = this.screen.concat('2')
 		},
 		numThree() {
-			this.calculatorScreen = this.calculatorScreen.concat('3')
+			this.screen = this.screen.concat('3')
 		},
 		plus() {
-			this.calculatorScreen = this.calculatorScreen.concat(' + ')
-			this.output = this.output.concat(this.calculatorScreen)
-			this.calculatorScreen = ''
+			this.screen = this.screen.concat(' + ')
+			this.output = this.output.concat(this.screen)
+			this.screen = ''
 		},
 		minus() {
-			this.calculatorScreen = this.calculatorScreen.concat(' - ')
-			this.output = this.output.concat(this.calculatorScreen)
-			this.calculatorScreen = ''
+			this.screen = this.screen.concat(' - ')
+			this.output = this.output.concat(this.screen)
+			this.screen = ''
 		},
 		evaluate() {
-			this.output = this.output.concat(this.calculatorScreen)
-			// this.calculatorScreen = ''
-			this.result = Parser.evaluate(this.output)
-			this.calculatorScreen = this.result
-			// console.log(this.calculatorScreen)
+			this.output = this.output.concat(this.screen)
+			// this.screen = ''
+			this.result = Parser.evaluate(this.output).toString()
+			this.screen = this.result
+			// console.log(this.screen)
 		}
 	}
 }
