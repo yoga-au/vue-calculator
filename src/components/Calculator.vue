@@ -2,13 +2,13 @@
 	<div>{{ output }}</div>
 	<input type="text" v-model="screen">
 	<div class="numpad-container">
-		<div class="numpad" @click="clear">AC</div>
-		<div class="numpad" @click="numOne">1</div>
-		<div class="numpad" @click="numTwo">2</div>
-		<div class="numpad" @click="numThree">3</div>
-		<div class="numpad" @click="plus">+</div>
-		<div class="numpad" @click="minus">-</div>
-		<div class="numpad" @click="evaluate">=</div>
+		<button class="numpad" @click="clear">AC</button>
+		<button class="numpad" @click="numOne" :disabled="disable">1</button>
+		<button class="numpad" @click="numTwo" :disabled="disable">2</button>
+		<button class="numpad" @click="numThree" :disabled="disable">3</button>
+		<button class="numpad" @click="plus" :disabled="disable">+</button>
+		<button class="numpad" @click="minus" :disabled="disable">-</button>
+		<button class="numpad" @click="evaluate" :disabled="disable">=</button>
 	</div>
 </template>
 
@@ -20,19 +20,21 @@ export default {
 		return {
 			screen: '',
 			result: '',
-			output: ''
+			output: '',
+			disable: false,
 		}
 	},
 
-	updated() {
-		console.log(this.output)
-	},
+	// updated() {
+	// 	console.log(this.output)
+	// },
 
 	methods: {
 		clear() {
 			this.screen = ''
 			this.result = ''
 			this.output = ''
+			this.disable = false
 		},
 		numOne() {
 			this.screen = this.screen.concat('1')
@@ -58,6 +60,7 @@ export default {
 			// this.screen = ''
 			this.result = Parser.evaluate(this.output).toString()
 			this.screen = this.result
+			this.disable = true
 			// console.log(this.screen)
 		}
 	}
