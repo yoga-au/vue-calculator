@@ -9,6 +9,7 @@
 		<button class="numpad" @click="plus" :disabled="disableOperator">+</button>
 		<button class="numpad" @click="minus" :disabled="disableOperator">-</button>
 		<button class="numpad" @click="evaluate" :disabled="disable">=</button>
+		<button class="numpad" @click="deleteScreen">X</button>
 	</div>
 </template>
 
@@ -60,6 +61,9 @@ export default {
 			this.output = this.output.concat(this.screen)
 			this.screen = ''
 			this.disableOperator = true
+		},
+		deleteScreen() {
+			this.screen = this.screen.replace(this.screen.slice(-1), '');
 		},
 		evaluate() {
 			this.output = this.output.concat(this.screen)
