@@ -4,6 +4,10 @@
 	padding: 0;
 }
 
+body {
+	background: #1F1D1E;
+}
+
 /**
  * Reset button styles.
  * It takes a bit of work to achieve a neutral look.
