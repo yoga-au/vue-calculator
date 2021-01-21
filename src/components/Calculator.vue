@@ -1,7 +1,7 @@
 <template>
 	<div class="calculator">
 		<div class="output">{{ output }}</div>
-		<input class="screen" type="text" v-model="screen">
+		<input class="screen" type="text" v-model="screen" disabled>
 		<div class="numpad-container">
 			<button class="numpad clear" @click="clear">AC</button>
 			<button class="numpad delete" :class="{ disabled: disable }" @click="deleteScreen">
